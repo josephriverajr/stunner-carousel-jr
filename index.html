@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Carousel</title>
+        <style>
+            /* initialize carousel, should only have 1 display block */
+            .carousel img { 
+                display: none;
+            }
+            .active {
+                display: block !important;
+            }
+            .inactive {
+                display: none !important;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>My Carousel</h1>
+        <div class="carousel">
+             <!-- first block has an active so it would show -->
+            <img alt="First" id="item_1" class="item-container active" src="https://placehold.co/350x200?text=1" /> 
+            <img alt="Second" id="item_2" class="item-container " src="https://placehold.co/350x200?text=2" />
+            <img alt="Third" id="item_3" class="item-container " src="https://placehold.co/350x200?text=3" />
+            <img alt="Fourth" id="item_4" class="item-container " src="https://placehold.co/350x200?text=4" />
+            <img alt="Fifth" id="item_5" class="item-container " src="https://placehold.co/350x200?text=5" />
+        </div>
+        <script>
+            let counter = 1; // created global variable for easily determine new counter value and wouldn't use params on the function anymore
+
+            function carouselSwitch(){ 
+                let itemShow =document.querySelector("#item_"+counter); // selecting current interval item img
+                let items =document.querySelectorAll(".item-container"); // initialized all tags that has item-container
+                // added loop for toggling the classlist value
+                items.forEach((item) =>{
+                    item.classList.value = "item-container"; // changing all class to item-container
+                })
+                    itemShow.classList.add("active");  // if counter is the same counter in id, it would add active class name
+            }
+            // added setinterval so every 1 sec the counter will increament by 1
+            setInterval(() => {
+                if(counter < 5){ // also added conditon since we only got 5 image to slide
+                    counter +=1;
+                }
+                else{ // once the counter greater than 5 it will reset to 1
+                    counter = 1;
+                }
+                carouselSwitch() // then call the function every interval
+            }, 1000) 
+        </script>
+    </body>
+</html>
